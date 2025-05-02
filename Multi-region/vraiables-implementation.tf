@@ -1,6 +1,7 @@
 variable "ami_id" {
     description = "AMI ID for instance"
     type = string
+    default = "ami-0c55b159cbfafe1f0" 
 }
 
 variable "instance_type" {
@@ -15,7 +16,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "server" {
-    ami_id = var.ami_id
+    id = var.ami_id # Example AMI ID, replace with
     instance_type = var.instance_type
 
 }
