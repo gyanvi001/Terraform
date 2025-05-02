@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 3Multi-Region
-=======
-3Multi-Region
->>>>>>> ff219b3 (Modified)
 
 provider "aws" {
     alias = us-west-1
