@@ -4,7 +4,7 @@ provider "aws" {
 
 # create vpc
 module "vpc" {
-  source                  = "../Springapp_Petclinic/Module/vpc"
+  source                  = "../Module/vpc"
   region                  = var.region
   project_name            = var.project_name
   vpc_cidr                = var.vpc_cidr
@@ -18,7 +18,7 @@ module "vpc" {
 
 # create nat gateway
 module "natgateway" {
-  source                = "../Springapp_Petclinic/Module/natgateway"
+  source                = "../Module/natgateway"
   public_subnet_az1_id  = module.vpc.public_subnet_az1_id
   internet_gateway      = module.vpc.internet_gateway
   public_subnet_az2_id  = module.vpc.public_subnet_az2_id
@@ -29,14 +29,14 @@ module "natgateway" {
 
 # create security group
 module "security_group" {
-  source = "../Springapp_Petclinic/Module/Security-Group"
+  source = "../Module/Security-Group"
   vpc_id = module.vpc.vpc_id
 
 }
 
 # create alb
 module "application_load_balancer" {
-  source                = "../Springapp_Petclinic/Module/alb"
+  source                = "../Module/alb"
   project_name          = module.vpc.project_name
   alb_security_group_id = module.security_group.alb_security_group_id
   public_subnet_az1_id  = module.vpc.public_subnet_az1_id
@@ -46,13 +46,13 @@ module "application_load_balancer" {
 
 # create ec2
 module "ec2" {
-  source = "../Springapp_Petclinic/Module/ec2"
+  source = "../Module/ec2"
   vpc_id = module.vpc.vpc_id
   region = var.region
 }
 #create rds
 module "rds" {
-  source                = "../Springapp_Petclinic/Module/Rds"
+  source                = "../Module/Rds"
   vpc_id                = module.vpc.vpc_id
   alb_security_group_id = module.security_group.alb_security_group_id
   secure_subnet_az1_id  = module.vpc.secure_subnet_az1_id
@@ -61,7 +61,7 @@ module "rds" {
 
 # create ASG
 module "asg" {
-  source                    = "../Springapp_Petclinic/Module/ASG"
+  source                    = "../Module/ASG"
   project_name              = module.vpc.project_name
   rds_db_endpoint           = module.rds.rds_db_endpoint
   private_subnet_az1_id     = module.vpc.private_subnet_az1_id

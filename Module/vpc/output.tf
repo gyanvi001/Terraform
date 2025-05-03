@@ -2,6 +2,10 @@ output "region" {
   value = var.region
 }
 
+output "project_name" {
+  value = var.project_name
+}
+
 output "vpc_id" {
   value = aws_vpc.infra.id
 }
@@ -31,6 +35,6 @@ output "secure_subnet_az2_id" {
 }
 
 output "internet_gateway" {
-  value = aws_internet_gateway.internet_gateway
+  value = aws_internet_gateway.igw
 }
 

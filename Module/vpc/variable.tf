@@ -4,7 +4,7 @@ variable region {
   default     = "us-east-1"
 }
 
-variable name {
+variable project_name {
   description = "The name of the VPC"
   type        = string
   default     = "my-vpc"
