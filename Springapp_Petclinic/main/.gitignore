@@ -1,0 +1,29 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform variable files (often contain secrets)
+*.tfvars
+
+# Terraform plan files
+*.tfplan
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local .terraform directory
+.terraform/
+
+# Terraform lock file (if you choose not to track it)
+.terraform.lock.hcl
+
+# Editor/OS-specific files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Shell script backups
+*.sh~
