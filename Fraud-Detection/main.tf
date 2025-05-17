@@ -51,6 +51,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+
 # 3. DynamoDB Table
 resource "aws_dynamodb_table" "flagged_transactions" {
   name           = "FlaggedTransactions"
@@ -62,6 +63,7 @@ resource "aws_dynamodb_table" "flagged_transactions" {
     type = "S"
   }
 }
+
 
 # 4. MSK (Kafka) Clusters for Topics (simplified)
 resource "aws_msk_cluster" "main" {
@@ -81,6 +83,7 @@ resource "aws_msk_cluster" "main" {
   }
 }
 
+
 # 5. KDA Flink Application (placeholder)
 resource "aws_kinesisanalyticsv2_application" "flink_filter" {
   name        = "FilterTransactionsOnFlaggedAccounts"
@@ -96,17 +99,20 @@ resource "aws_kinesisanalyticsv2_application" "flink_filter" {
   }
 }
 
+
 # 6. CloudWatch Event Rule (Trigger Lambda)
 resource "aws_cloudwatch_event_rule" "trigger" {
   name        = "SampleTriggerRule"
   schedule_expression = "rate(5 minutes)"
 }
 
+
 resource "aws_cloudwatch_event_target" "lambda_target" {
   rule      = aws_cloudwatch_event_rule.trigger.name
   target_id = "SampleLambdaTarget"
   arn       = aws_lambda_function.transaction_generator.arn
 }
+
 
 resource "aws_lambda_permission" "allow_cloudwatch" {
   statement_id  = "AllowExecutionFromCloudWatch"
