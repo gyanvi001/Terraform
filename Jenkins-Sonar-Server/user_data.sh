@@ -54,12 +54,12 @@ sudo systemctl restart jenkins
 
 
 # Create 'sonarqube' user
-sudo useradd -m -s /bin/bash sonarqube
+#sudo useradd -m -s /bin/bash sonarqube
 
 #Install Sonarqube
-cd /opt
-sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.4.87374.zip
-sudo unzip sonarqube-9.9.4.87374.zip
+#cd /opt
+#sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.4.87374.zip
+#sudo unzip sonarqube-9.9.4.87374.zip
 sudo mv sonarqube-9.9.4.87374 sonarqube
 sudo chown -R sonarqube:sonarqube /opt/sonarqube
 
