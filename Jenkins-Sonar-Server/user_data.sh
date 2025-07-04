@@ -60,8 +60,8 @@ sudo systemctl restart jenkins
 #cd /opt
 #sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.4.87374.zip
 #sudo unzip sonarqube-9.9.4.87374.zip
-sudo mv sonarqube-9.9.4.87374 sonarqube
-sudo chown -R sonarqube:sonarqube /opt/sonarqube
+#sudo mv sonarqube-9.9.4.87374 sonarqube
+#sudo chown -R sonarqube:sonarqube /opt/sonarqube
 
 # Enable and start SonarQube service
 sudo systemctl daemon-reexec
