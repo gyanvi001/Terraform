@@ -21,6 +21,25 @@ resource "aws_instance"  "Jenkins-Server" {
 
 }
 
+resource "aws_instance"  "Jenkins-Agent" {
+    ami = var.ami_id # EC2 instance ID for Ubuntu 
+    instance_type = var.instance_type # EC2 instance type
+    key_name = var.key_name # Key pair name for SSH access
+    vpc_security_group_ids = [aws_security_group.jenkins_sg.id] # Security group for Jenkins
+
+    user_data = file("agent_user_data.sh")
+
+    root_block_device {
+    volume_size = 10 # Resize root volume to 10 GB
+    volume_type = "gp2"
+   }
+
+    tags = {
+        Name = "Jenkins-Agent"
+    }
+
+}
+
 
 resource "aws_security_group" "jenkins_sg" {
     name = "jenkins_sg"
