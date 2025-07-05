@@ -19,3 +19,9 @@ variable "key_name" {
     description = "Key pair name for SSH access"
     type = string
 }
+
+variable "agent_instance_type" {
+    description = "EC2 instance type for Jenkins agent"
+    type = string
+    default = "t2.micro" # Default value, can be overridden in terraform.tfvars
+}
