@@ -7,7 +7,7 @@ provider "aws" {
  # id = "i-0f81f011c1ea33ea9"
 #}
 
-resource "aws_s3_bucket" "backend-bucket" {
+resource "aws_s3_bucket" "new-backend-bucket" {
   bucket = "my-terraform-backend-bucket"
   tags = {
     Name        = "My Terraform Backend Bucket"
@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "backend-bucket" {
 }
  
 resource "aws_s3_bucket_versioning" "bucket-versioning" {
-  bucket = aws_s3_bucket.backend-bucket.id
+  bucket = aws_s3_bucket.new-backend-bucket.id
   versioning_configuration {
     status = "Enabled"
   }
