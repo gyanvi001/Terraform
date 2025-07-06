@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "backend-bucket" {
 }
  
 resource "aws_s3_bucket_versioning" "bucket-versioning" {
-  bucket = aws_S3_bucket.backend-bucket.id
+  bucket = aws_s3_bucket.backend-bucket.id
   versioning_configuration {
     status = "Enabled"
   }
@@ -29,7 +29,7 @@ resource "aws_s3_bucket_versioning" "bucket-versioning" {
 
 resource "aws_dynamodb_table" "terraform_state_dynamo" {
   name = "my-table"
-  billing_mode = "Pay-per-request"
+  billing_mode = "PAY_PER_REQUEST"
   hash_key = "LockID"
 
   attribute {
