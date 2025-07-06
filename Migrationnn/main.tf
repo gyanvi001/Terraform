@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
 }
 
 #import {
@@ -8,7 +8,7 @@ provider "aws" {
 #}
 
 resource "aws_s3_bucket" "new-backend-bucket" {
-  bucket = "my-terraform-backend-bucket"
+  bucket = "new-my-terraform-backend-bucket"
   tags = {
     Name        = "My Terraform Backend Bucket"
     Environment = "Dev"
