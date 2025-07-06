@@ -25,5 +25,15 @@ resource "aws_s3_bucket_versioning" "bucket-versioning" {
     prevent_destroy = false
   }
 
+}
 
+resource "aws_dynamodb_table" "terraform_state_dynamo" {
+  name = "my-table"
+  billing_mode = "Pay-per-request"
+  hash_key = "LockID"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
 }
