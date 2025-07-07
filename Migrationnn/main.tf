@@ -8,7 +8,7 @@ provider "aws" {
 #}
 
 resource "aws_s3_bucket" "new-backend-bucket" {
-  bucket = "new-my-terraform-backend-bucket"
+  bucket = "new-my-terraform-backend-bucket" # This is the bucket name through which it will be accessed
   tags = {
     Name        = "My Terraform Backend Bucket"
     Environment = "Dev"
@@ -36,4 +36,32 @@ resource "aws_dynamodb_table" "terraform_state_dynamo" {
     name = "LockID"
     type = "S"
   }
+}
+
+#provisioner
+resource "aws_ec2" "My-instance" {
+  ami           = "ami-088231783271"
+  instance_type = "t2.micro"
+  key_name     =  "my-key-pair"
+  root_block_device {
+    volume_size = 8 
+    volume_type = "gp3"
+  }
+
+  tags = {
+    Name        = "My EC2 Instance"
+    Environment = "Dev"
+  }
+
+}
+
+# file provisioner 
+provisioner "file" {
+  source     = "local_file.txt"
+  destination = "/home/ubuntu/local_file.txt"
+  connection {
+    type        = "ssh"
+    user   = "ubuntu"
+    key_name = "my-key-pair"
+    }
 }
