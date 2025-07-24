@@ -58,3 +58,7 @@ resource "aws_instance" "My-instance" {
     }
   }
 }
+
+resource "aws_security_group" "My-security-group" {
+  name        = "MySecurityGroup"
+  
